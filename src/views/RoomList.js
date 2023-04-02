@@ -1,4 +1,5 @@
 import { RoomDetails } from './RoomDetails';
+import { RoomReservation } from './RoomReservation';
 import { NavButton } from '../common/NavButton';
 import { cartManager } from '../cart/cart-manager';
 
@@ -27,6 +28,12 @@ export function RoomList() {
               <footer></footer>
             `;
 
+        const reserveButton = NavButton(
+          'Reserve',
+          () => RoomReservation(room),
+          ['btn']
+        );
+
         const addToCartButton = document.createElement('button');
         addToCartButton.innerText = 'Add to cart';
         addToCartButton.classList.add('btn');
@@ -40,7 +47,11 @@ export function RoomList() {
           ['btn']
         );
 
-        li.querySelector('footer').append(addToCartButton, detailsButton);
+        li.querySelector('footer').append(
+          reserveButton,
+          addToCartButton,
+          detailsButton
+        );
 
         return li;
       });
