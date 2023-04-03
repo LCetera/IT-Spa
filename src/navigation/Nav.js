@@ -3,12 +3,16 @@ import { Home } from '../views/Home';
 import { RoomList } from '../views/RoomList';
 import { TreatmentList } from '../views/TreatmentList';
 import { Cart } from '../views/Cart';
+import { RegistrationForm } from '../views/RegistrationForm';
+import { LoginForm } from '../views/LoginForm';
 
 const navItems = [
   { name: 'Home', component: Home },
   { name: 'Rooms', component: RoomList },
   { name: 'Treatments', component: TreatmentList },
   { name: 'Cart 🛒', component: Cart },
+  { name: 'Registration', component: RegistrationForm },
+  { name: 'Login', component: LoginForm },
 ];
 
 export function Nav() {
