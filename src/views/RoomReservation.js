@@ -2,6 +2,7 @@ import { cartManager } from '../cart/cart-manager';
 
 export function RoomReservation(room) {
   const section = document.createElement('section');
+  const form = document.createElement('form');
 
   function getValues(event) {
     event.preventDefault();
@@ -18,42 +19,27 @@ export function RoomReservation(room) {
     cartManager.addRoom(room, difference);
   }
 
-  const form = document.createElement('form');
+  section.innerHTML = `
+  <h2>Rezerwacja pokoju</h2>
+  <p>Proszę uzupełnić poniższy formularz rezerwacji pokoju ${room.name} </p>
+  <hr>`;
 
   form.name = 'Reservation_form';
+  form.id = 'Reservation_form';
   form.method = 'post';
 
-  my_tb = document.createElement('label');
-  my_tb.innerHTML = 'Podaj datę przyjazdu: ';
-  form.appendChild(my_tb);
+  form.innerHTML = `
+  <label for="start_date">Podaj datę przyjazdu: </label>
+  <input type="date" name="start_date" id="start_date" required>
+  <br>
 
-  my_tb = document.createElement('input');
-  my_tb.type = 'date';
-  my_tb.name = 'start_date';
-  form.appendChild(my_tb);
+  <label for="end_date">Podaj datę wyjazdu: </label>
+  <input type="date" name="end_date" id="end_date" required>
+  <br>
 
-  my_tb = document.createElement('br');
-  form.appendChild(my_tb);
+  <button type="submit" name="submit" class="btn">Dodaj do koszyka</button>
+  `;
 
-  my_tb = document.createElement('label');
-  my_tb.innerHTML = 'Podaj datę wyjazdu: ';
-  form.appendChild(my_tb);
-
-  my_tb = document.createElement('input');
-  my_tb.type = 'date';
-  my_tb.name = 'end_date';
-  form.appendChild(my_tb);
-
-  my_tb = document.createElement('br');
-  form.appendChild(my_tb);
-
-  my_tb = document.createElement('button');
-  my_tb.type = 'submit';
-  my_tb.name = 'submit';
-  my_tb.innerText = 'Add to cart';
-  my_tb.classList.add('btn');
-
-  form.appendChild(my_tb);
   form.addEventListener('submit', getValues);
 
   section.append(form);
