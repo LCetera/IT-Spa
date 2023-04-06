@@ -34,24 +34,13 @@ export function RoomList() {
           ['btn']
         );
 
-        const addToCartButton = document.createElement('button');
-        addToCartButton.innerText = 'Add to cart';
-        addToCartButton.classList.add('btn');
-        addToCartButton.addEventListener('click', () =>
-          cartManager.addItem(room)
-        );
-
         const detailsButton = NavButton(
           'Read more...',
           () => RoomDetails(room.id),
           ['btn']
         );
 
-        li.querySelector('footer').append(
-          reserveButton,
-          addToCartButton,
-          detailsButton
-        );
+        li.querySelector('footer').append(reserveButton, detailsButton);
 
         return li;
       });

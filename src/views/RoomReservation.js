@@ -7,16 +7,20 @@ export function RoomReservation(room) {
   function getValues(event) {
     event.preventDefault();
 
-    let formData = {
-      start_date: this.start_date,
-      end_date: this.end_date,
-    };
-    const difference =
-      (new Date(formData.end_date.value) -
-        new Date(formData.start_date.value)) /
-      (1000 * 3600 * 24);
+    let validation = true;
 
-    cartManager.addRoom(room, difference);
+    if (this.end_date.value <= this.start_date.value) {
+      alert('Data zakończenia musi być późniejsza niż data rozpoczęcia');
+      validation = false;
+    }
+
+    if (validation == true) {
+      const difference =
+        (new Date(this.end_date.value) - new Date(this.start_date.value)) /
+        (1000 * 3600 * 24);
+
+      cartManager.addRoom(room, difference);
+    }
   }
 
   section.innerHTML = `
@@ -39,6 +43,10 @@ export function RoomReservation(room) {
 
   <button type="submit" name="submit" class="btn">Dodaj do koszyka</button>
   `;
+
+  let today = new Date().toISOString().split('T')[0];
+  form.start_date.min = today;
+  form.end_date.min = today;
 
   form.addEventListener('submit', getValues);
 

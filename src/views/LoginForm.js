@@ -13,8 +13,9 @@ export function LoginForm() {
           if (
             this.username.value == users[i].username &&
             this.psw.value == users[i].password
-          )
+          ) {
             userFound = true;
+          }
         }
         if (userFound == false) alert('Wrong username or password');
       });
@@ -38,7 +39,7 @@ export function LoginForm() {
   <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
   <br>
 
-  <button type="submit" class="loginbtn">Login</button>
+  <button type="submit" class="btn">Login</button>
   `;
 
   form.addEventListener('submit', message);

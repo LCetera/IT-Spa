@@ -4,6 +4,11 @@
       "id": 1,
       "username": "test",
       "password": "123qwe"
+    },
+    {
+      "id": 2,
+      "username": "test2",
+      "password": "123456"
     }
   ],
   "rooms": [

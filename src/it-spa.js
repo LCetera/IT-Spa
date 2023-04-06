@@ -2,8 +2,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './it-spa.scss';
 
 import { Home } from './views/Home';
-import { RoomList } from './views/RoomList';
-import { TreatmentList } from './views/TreatmentList';
 import { Nav } from './navigation/Nav';
 
 const main = document.querySelector('main');
