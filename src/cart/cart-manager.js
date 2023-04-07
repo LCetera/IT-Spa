@@ -86,7 +86,6 @@ export const cartManager = {
     } else {
       const content = JSON.parse(cart);
 
-      // entry to jest [KLUCZ, WARTOSC]
       return Object.entries(content).map((entry) => {
         const [itemName, itemDetails] = entry;
 

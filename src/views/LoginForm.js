@@ -15,15 +15,16 @@ export function LoginForm() {
             this.psw.value == users[i].password
           ) {
             userFound = true;
+            alert(`Użytkownik ${users[i].username} został zalogowany`);
           }
         }
-        if (userFound == false) alert('Wrong username or password');
+        if (userFound == false) alert('Błędna nazwa użytkownika lub hasło');
       });
   }
 
   section.innerHTML = `
-  <h2>Login</h2>
-    <p>Please fill in this form to log in to your account.</p>
+  <h2>Logowanie</h2>
+    <p>Aby się zalogować, wypełnij poniższy formularz.</p>
   <hr>`;
 
   form.name = 'LogForm';
@@ -31,13 +32,13 @@ export function LoginForm() {
   form.method = 'post';
 
   form.innerHTML = `
-  <label for="username"><b>Username: </b></label>
-  <input type="text" placeholder="Enter Username" name="username" id="username" required>
+  <label for="username"><b>Nazwa użytkownika: </b></label>
+  <input type="text" placeholder="Nazwa użytkownika" name="username" id="username" required>
   <br>
 
-  <label for="psw"><b>Password: </b></label>
-  <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-  <br>
+  <label for="psw"><b>Hasło: </b></label>
+  <input type="password" placeholder="Hasło" name="psw" id="psw" required>
+  <hr>
 
   <button type="submit" class="btn">Login</button>
   `;

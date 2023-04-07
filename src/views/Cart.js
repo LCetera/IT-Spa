@@ -5,16 +5,16 @@ export function Cart() {
   const section = document.createElement('section');
 
   section.innerHTML = `
-    <h2>Cart</h2>
+    <h2>Koszyk 🛒</h2>
     <p>Przeglądaj zawartość koszyka:</p>
     <table class="table"></table>
     `;
 
   const tableHead = document.createElement('tr');
   tableHead.innerHTML = `
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
+    <th>Nazwa</th>
+    <th>Ilość</th>
+    <th>Cena</th>
     <th></th>
     `;
 
@@ -22,7 +22,7 @@ export function Cart() {
     const tr = document.createElement('tr');
 
     const removeItem = NavButton(
-      'Remove 🗑️',
+      'Usuń 🗑️',
       () => {
         cartManager.removeItem(item);
         return Cart();

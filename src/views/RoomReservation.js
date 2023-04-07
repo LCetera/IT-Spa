@@ -39,7 +39,7 @@ export function RoomReservation(room) {
 
   <label for="end_date">Podaj datę wyjazdu: </label>
   <input type="date" name="end_date" id="end_date" required>
-  <br>
+  <hr>
 
   <button type="submit" name="submit" class="btn">Dodaj do koszyka</button>
   `;

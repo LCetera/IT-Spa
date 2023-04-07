@@ -8,38 +8,56 @@ export function RegistrationForm() {
     fetch('http://localhost:3000/users')
       .then((response) => response.json())
       .then((users) => {
-        let validationFailed = false;
-        for (let i = 0; i < users.length; i++) {
-          if (this.username.value == users[i].username) {
-            alert('This username already exist, please use another one');
-            validationFailed = true;
-          }
+        let validationPass = true;
+
+        validationPass = validateUsername(users);
+
+        if (validationPass == true) {
+          validationPass = validatePassword();
         }
-        if (validationFailed == false) {
-          if (this.psw.value !== this.pswRepeat.value) {
-            alert('Typed passwords are different');
-            validationFailed = true;
-          }
-        }
-        if (validationFailed == false) {
-          fetch('http://localhost:3000/users', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              id: users.length + 1,
-              username: new String(this.username.value),
-              password: new String(this.psw.value),
-            }),
-          });
+        if (validationPass == true) {
+          registerUser(users);
         }
       });
   }
 
+  function validateUsername(users) {
+    for (let i = 0; i < users.length; i++) {
+      if (this.username.value == users[i].username) {
+        alert(`Nazwa użytkownika ${this.username.value} jest już używana.
+        Proszę wprowadzić inną nazwę użytkownika`);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function validatePassword() {
+    if (this.psw.value !== this.pswRepeat.value) {
+      alert('Wprowadzone hasła różnią się.');
+      return false;
+    }
+    return true;
+  }
+
+  function registerUser(users) {
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: users.length + 1,
+        username: new String(this.username.value),
+        password: new String(this.psw.value),
+      }),
+    });
+    alert(`Użytkownik ${this.username.value} został zarejestrowany`);
+  }
+
   section.innerHTML = `
-    <h2>Register</h2>
-    <p>Please fill in this form to create an account.</p>
+    <h2>Rejestracja</h2>
+    <p>By utworzyć konto należy wypełnić poniższy formularz.</p>
     <hr>
     `;
 
@@ -48,19 +66,19 @@ export function RegistrationForm() {
   form.method = 'post';
 
   form.innerHTML = `
-    <label for="username"><b>Username: </b></label>
-    <input type="text" placeholder="Enter Username" name="username" id="username" required>
+    <label for="username"><b>Nazwa użytkownika: </b></label>
+    <input type="text" placeholder="Nazwa użytkownika" name="username" id="username" required>
     <br>
 
-    <label for="psw"><b>Password: </b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <label for="psw"><b>Hasło: </b></label>
+    <input type="password" placeholder="Hasło" name="psw" id="psw" required>
     <br>
 
-    <label for="psw-repeat"><b>Repeat Password: </b></label>
-    <input type="password" placeholder="Repeat Password" name="pswRepeat" id="pswRepeat" required>
-    <br>
+    <label for="psw-repeat"><b>Powtórz hasło: </b></label>
+    <input type="password" placeholder="Powtórz hasło" name="pswRepeat" id="pswRepeat" required>
+    <hr>
 
-    <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn">Zarejestruj</button>
     `;
 
   form.addEventListener('submit', message);

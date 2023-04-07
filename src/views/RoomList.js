@@ -8,7 +8,7 @@ export function RoomList() {
   const ul = document.createElement('ul');
 
   section.innerHTML = `
-      <h2>Room List</h2>
+      <h2>Lista dostępnych pokoi</h2>
       <p>Sprawdź ofertę pokoi.</p>
       <p class="loading">Ładuję listę pokoi...</p>
     `;
@@ -35,7 +35,7 @@ export function RoomList() {
         );
 
         const detailsButton = NavButton(
-          'Read more...',
+          'Więcej...',
           () => RoomDetails(room.id),
           ['btn']
         );
@@ -47,9 +47,8 @@ export function RoomList() {
 
       ul.append(...lis);
 
-      // usuwamy element mowiacy o ladowaniu
       section.querySelector('.loading').remove();
-      // podstawiamy gotowa liste z pokojami
+
       section.append(ul);
     });
 

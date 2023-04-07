@@ -14,7 +14,7 @@ export function TreatmentDetails(treatmentId) {
       details.innerHTML = `
           <h3>${treatment.name}</h3>
           <p>Obszar: ${treatment.area}</p>
-          <p>Czas zabiegu: ${treatment.time}</p>
+          <p>Czas zabiegu: ${treatment.time} minut</p>
           <p>
               <strong>${treatment.price.toFixed(2)} PLN</strong>
           </p>
